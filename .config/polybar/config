@@ -1,0 +1,164 @@
+[bar/topbar]
+font-0 = "Monospace:size=11;1"
+
+monitor = 
+
+; Put the bar at the bottom of the screen
+bottom = false
+
+width = 100%
+height = 2%
+
+background = #282828
+; foreground = #a89984
+foreground = #ebdbb2
+
+modules-right = memory battery
+modules-left = cpu temp
+modules-center = clock
+separator = " "
+spacing = 1.5
+
+locale = en_US.UTF-8
+
+tray-postion = center
+
+############################################################################################################
+
+[bar/bottombar]
+font-0 = "Monospace:size=11;1"
+
+monitor = 
+
+; Put the bar at the bottom of the screen
+bottom = true
+
+width = 100%
+height = 2%
+
+background = #282828
+foreground = #a89984
+; foreground = #ebdbb2
+
+modules-right = network
+modules-left = polybar-windows
+separator = " "
+spacing = 1.5
+
+locale = en_US.UTF-8
+
+tray-postion = center
+
+############################################################################################################
+
+[module/cpu]
+type = internal/cpu
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 2.0
+
+format = <label> <ramp-coreload>
+label = %{F#fabd2f}CPU%{F-}  %percentage-cores%
+label-padding = 1
+
+ramp-coreload-spacing = 1.5
+ramp-coreload-0 = 
+
+############################################################################################################
+
+[module/memory] 
+type = internal/memory
+
+interval = 2.0
+
+format = <label> <bar-used>
+label = "%{F#fabd2f}RAM%{F-}  %gb_used% / %gb_total%"
+label-padding = 1
+
+bar-used-indicator = 
+bar-used-width = 5%
+bar-used-fill = 
+bar-used-empty = 
+
+############################################################################################################
+
+[module/battery]
+type = internal/battery
+
+full-at = 100
+
+battery = BAT1
+adapter = ACAD
+
+format-charging = %{F#fabd2f}BATTERY%{F-}<label-charging>
+format-discharging = %{F#fabd2f}BATTERY%{F-}<label-discharging>
+
+label-charging = %{F#b8bb26}(Charging)%{F-} %percentage%%
+label-charging-padding = 1
+label-discharging = %percentage%%
+label-discharging-padding = 1
+label-full = Battery Full
+label-full-padding = 1
+
+############################################################################################################
+
+[module/temp]
+type = internal/temperature
+
+interval = 1.5
+
+thermal-zone = 1
+
+format = %{F#fabd2f}TEMP%{F-} <label>
+format-warn = %{F#fabd2f}TEMP%{F-} <label-warn>
+
+label = %temperature-c%
+label-padding = 1
+label-warn = %temperature-c%
+label-warn-foreground = #fb4934
+label-warn-padding = 1
+
+############################################################################################################
+
+[module/clock]
+type = internal/date
+
+interval = 0.5
+
+date = %Y-%m-%d%
+time = %H:%M
+
+format = <label>
+label = %date%  %time%
+label-padding = 1
+
+############################################################################################################
+
+[module/network]
+type = internal/network
+
+interface = wlp2s0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-disconnected = <label-disconnected>
+
+label-connected = %essid% %downspeed:9%
+label-connected-foreground = #98971a
+label-connected-padding = 1
+label-disconnected = not connected
+label-disconnected-foreground = #fb4934
+label-disconnected-padding = 1
+
+ramp-signal-0 = 
+
+############################################################################################################
+
+[module/polybar-windows]
+type = custom/script
+exec = ~/.config/polybar/scripts/polybar-windows.sh
+format = <label>
+label = %output%
+label-padding = 1
+interval = 1
