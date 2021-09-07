@@ -1,9 +1,9 @@
 " Basic Settings
 set noerrorbells
 set smartindent
-set tabstop=8
-set shiftwidth=8
-set softtabstop=8
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set smarttab
 set nu
 set nowrap
