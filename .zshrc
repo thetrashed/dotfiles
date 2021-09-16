@@ -1,5 +1,7 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/usr/bin
+export PATH=/usr/local/bin:$PATH
+# $HOME/bin:$HOME/usr/bin
+
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/ameer/.oh-my-zsh"
@@ -9,7 +11,7 @@ export ZSH="/home/ameer/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="darkblood"
+ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
