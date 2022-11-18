@@ -1,7 +1,10 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/.bin:$HOME/.local/bin:/usr/local/bin:$HOME/.nimble/bin:$PATH
 # $HOME/bin:$HOME/usr/bin
 
+if [ -d "$HOME/adb-fastboot/platform-tools" ] ; then
+	export PATH="$HOME/adb-fastboot/platform-tools:$PATH"
+fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/ameer/.oh-my-zsh"
@@ -68,6 +71,14 @@ ZSH_THEME="spaceship"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# History
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=10000
+SAVEHIST=$HISTSIZE
+setopt hist_ignore_all_dups
+setopt SHARE_HISTORY
+setopt hist_ignore_space
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -111,8 +122,14 @@ export EDITOR='vim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
-alias close='shutdown now'
-alias o='xdg-open'
+alias open='xdg-open'
 alias update='sudo pacman -Syyu'
 alias pc='sudo pacman'
-alias reboot='sudo reboot -f'
+alias dropbox='~/.dropbox.py'
+alias :q='exit'
+alias gpp='g++'
+alias tbrowser='~/.tor_browser/Browser/start-tor-browser &disown'
+alias syncthing='syncthing &disown'
+alias rm='delete_script'
+alias empty='sudo rm -rvf /home/ameer/.trash/* & sudo rm -rvf /home/ameer/.trash/.*'
+alias session='$HOME/.session-desktop-linux-x86_64-1.8.6.AppImage 1> /dev/null 2> $HOME/.session_log.txt &disown'

@@ -1,0 +1,5 @@
+set zoom=fitwidth
+set content=no
+set autoscrollpage=yes
+set continuous=yes
+set continuouspad=5
