@@ -125,7 +125,7 @@ augroup filetype_tex
 	autocmd BufNewFile,BufRead *.cls set syntax=tex
 augroup END
 
-let g:livepreview_previewer = 'okular'
+let g:livepreview_previewer = 'apvlv'
 let g:livepreview_engine = 'pdflatex'
 let g:livepreview_cursorhold_recompile = 0
 autocmd Filetype tex setl updatetime=1000
