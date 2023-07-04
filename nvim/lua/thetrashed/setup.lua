@@ -40,6 +40,9 @@ vim.api.nvim_command('filetype plugin on')
 vim.opt.mouse = ''
 vim.opt.conceallevel = 2
 
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
 -- Call TexlabBuild each time a .tex file is saved
 --
 -- Define the function to be called on file save

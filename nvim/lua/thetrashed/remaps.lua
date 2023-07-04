@@ -8,8 +8,8 @@ vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
 -- Splitting
-vim.keymap.set("n", "<leader>pp", vim.cmd.vsplit) -- Vertical
-vim.keymap.set("n", "<leader>ph", vim.cmd.split)  -- Horizontal
+vim.keymap.set("n", "<leader>pp", vim.cmd.vnew) -- Vertical
+vim.keymap.set("n", "<leader>ph", vim.cmd.new)  -- Horizontal
 vim.keymap.set("n", "<leader>k", "<C-W>k")
 vim.keymap.set("n", "<leader>j", "<C-W>j")
 vim.keymap.set("n", "<leader>h", "<C-W>h")
