@@ -1,0 +1,46 @@
+general {
+	output_format = "i3bar"
+	colors = true
+	interval = 5
+}
+
+order += "wireless wlp2s0"
+order += "volume master"
+order += "battery 1"
+order += "memory"
+order += "tztime local"
+
+wireless wlp2s0 {
+	format_up = "W: (%quality at %essid)"
+	format_down = "W: down"
+}
+
+battery 1 {
+	format = "%status %percentage %emptytime"
+	format_down = "No Battery"
+	status_chr = "⚡ CHR"
+	status_bat = "🔋 BAT"
+	status_unk = "? UNK"
+	status_full = "☻ FULL"
+    last_full_capacity = true
+	path = "/sys/class/power_supply/BAT%d/uevent"
+	low_threshold = 10
+}
+
+tztime local {
+	format = "%Y-%m-%d %H:%M:%S\t"
+}
+
+memory {
+	format = "%used / %total"
+	threshold_degraded = "10%"
+	format_degraded = "MEMORY: %free"
+}
+
+volume master {
+	format = "♪: %volume (%devicename)"
+	format_muted = "♪: muted (%devicename)"
+    mixer = "Master"
+    mixer_idx = 0
+	device = "default"
+}

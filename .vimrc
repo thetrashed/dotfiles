@@ -118,6 +118,7 @@ nnoremap <Leader>tl :vert term<CR>
 nnoremap <Leader>tj :bel term<CR>
 nnoremap <Leader>tk :above term<CR>
 
+
 " Tex Files
 augroup filetype_tex
 	autocmd!
@@ -125,7 +126,7 @@ augroup filetype_tex
 	autocmd BufNewFile,BufRead *.cls set syntax=tex
 augroup END
 
-let g:livepreview_previewer = 'apvlv'
+let g:livepreview_previewer = 'sioyek'
 let g:livepreview_engine = 'pdflatex'
 let g:livepreview_cursorhold_recompile = 0
 autocmd Filetype tex setl updatetime=1000
@@ -157,6 +158,7 @@ let g:ycm_language_server = [
 \     'filetypes': [ 'nim' ],
 \   },
 \ ]
+
 
 " Statusbar - Airline
 function! AirlineInit()

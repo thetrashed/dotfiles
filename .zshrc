@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.bin:$HOME/.local/bin:/usr/local/bin:$HOME/.nimble/bin:$PATH
+export PATH=$HOME/.bin:$HOME/.local/bin:/usr/local/bin:$HOME/.nimble/bin:$PATH:/home/ameer/.flutter/bin
 # $HOME/bin:$HOME/usr/bin
 
 if [ -d "$HOME/adb-fastboot/platform-tools" ] ; then
@@ -106,8 +106,11 @@ export LANG=en_US.UTF-8
 #   export EDITOR='mvim'
 # fi
 #
-export VISUAL='vim'
-export EDITOR='vim'
+export VISUAL='nvim'
+export EDITOR='nvim'
+export SUDO_EDITOR='nvim'
+
+export BROWSER='qutebrowser'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -127,9 +130,9 @@ alias update='sudo pacman -Syyu'
 alias pc='sudo pacman'
 alias dropbox='~/.dropbox.py'
 alias :q='exit'
-alias gpp='g++'
 alias tbrowser='~/.tor_browser/Browser/start-tor-browser &disown'
 alias syncthing='syncthing &disown'
 alias rm='delete_script'
-alias empty='sudo rm -rvf /home/ameer/.trash/* & sudo rm -rvf /home/ameer/.trash/.*'
+alias empty='sudo rm -rvf /home/ameer/.trash/* && sudo rm -rvf /home/ameer/.trash/.*'
+alias vim='nvim'
 alias session='$HOME/.session-desktop-linux-x86_64-1.8.6.AppImage 1> /dev/null 2> $HOME/.session_log.txt &disown'
