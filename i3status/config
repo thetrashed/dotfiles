@@ -5,14 +5,22 @@ general {
 }
 
 order += "wireless wlp2s0"
+order += "path_exists VPN"
 order += "volume master"
 order += "battery 1"
 order += "memory"
 order += "tztime local"
 
 wireless wlp2s0 {
-	format_up = "W: (%quality at %essid)"
+	format_up = "W: %essid (%quality)"
 	format_down = "W: down"
+    format_quality = "%d%s"
+}
+
+path_exists VPN {
+    path = "/proc/sys/net/ipv4/conf/tun0"
+    format_down = ""
+    format = "%title"
 }
 
 battery 1 {
@@ -25,10 +33,11 @@ battery 1 {
     last_full_capacity = true
 	path = "/sys/class/power_supply/BAT%d/uevent"
 	low_threshold = 10
+    integer_battery_capacity = true
 }
 
 tztime local {
-	format = "%Y-%m-%d %H:%M:%S\t"
+	format = "%Y-%m-%d %H:%M:%S "
 }
 
 memory {
