@@ -10,13 +10,13 @@ font pango:monospace 10
 font pango:DejaVu Sans Mono, Noto Sans Mono 10
 
 # Set background
-exec --no-startup-id source ~/.fehbg
+exec_always --no-startup-id source ~/.fehbg
 
 # Set nightlight
 exec --no-startup-id redshift -P -O 4500
 
 # Start compositor
-exec_always --no-startup-id picom -b
+exec_always --no-startup-id picom --legacy-backends -b
 
 exec --no-startup-id xset -dpms
 exec --no-startup-id xset s off
@@ -177,10 +177,11 @@ bindsym $mod+r mode "$mode_resize"
 bar {
 	font pango: Source Code Pro 10
 	position bottom
-	status_command i3status $HOME/.config/i3status/config
+	# status_command i3status $HOME/.config/i3status/config
+	status_command i3status-rs $HOME/.config/i3status-rust/config.toml
 	colors {
 		separator #666666
-		background #111111
+		background #111111aa
 		statusline #dddddd
 		focused_workspace #dddddd #cccccc #111111
 		active_workspace #111111 #111111 #111111
@@ -217,7 +218,7 @@ bindsym $ctrl+$mod+k exec playerctl previous
 bindsym $ctrl+$mod+j exec playerctl next
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
-bindsym XF86AudioNext exec --no-startup-id playerctl next 
+bindsym XF86AudioNext exec --no-startup-id playerctl next
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status

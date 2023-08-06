@@ -1,26 +1,31 @@
 vim.g.mapleader = " "
+local kmap = vim.keymap.set
 
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) -- File manager
+kmap("n", "<leader>pv", vim.cmd.Ex) -- File manager
 
 -- Allows copying to clipboard
-vim.keymap.set("n", "<leader>y", "\"+y")
-vim.keymap.set("v", "<leader>y", "\"+y")
-vim.keymap.set("n", "<leader>Y", "\"+Y")
+kmap("n", "<leader>y", '"+y')
+kmap("v", "<leader>y", '"+y')
+kmap("n", "<leader>Y", '"+Y')
 
 -- Splitting
-vim.keymap.set("n", "<leader>pp", vim.cmd.vnew) -- Vertical
-vim.keymap.set("n", "<leader>ph", vim.cmd.new)  -- Horizontal
-vim.keymap.set("n", "<leader>k", "<C-W>k")
-vim.keymap.set("n", "<leader>j", "<C-W>j")
-vim.keymap.set("n", "<leader>h", "<C-W>h")
-vim.keymap.set("n", "<leader>l", "<C-W>l")
+kmap("n", "<leader>pp", vim.cmd.vnew) -- Vertical
+kmap("n", "<leader>ph", vim.cmd.new) -- Horizontal
+kmap("n", "<leader>k", "<C-W>k")
+kmap("n", "<leader>j", "<C-W>j")
+kmap("n", "<leader>h", "<C-W>h")
+kmap("n", "<leader>l", "<C-W>l")
 
-vim.keymap.set("n", "<leader>=", ":vertical resize +5<CR>")
-vim.keymap.set("n", "<leader>-", ":vertical resize -5<CR>")
-vim.keymap.set("n", "<leader>]", ":horizontal resize +5<CR>")
-vim.keymap.set("n", "<leader>[", ":horizontal resize -5<CR>")
+kmap("n", "<leader>=", ":vertical resize +5<CR>")
+kmap("n", "<leader>-", ":vertical resize -5<CR>")
+kmap("n", "<leader>]", ":horizontal resize +5<CR>")
+kmap("n", "<leader>[", ":horizontal resize -5<CR>")
 
 -- Toggle highlighting
-vim.keymap.set("n", "<C-h>", vim.cmd.nohl)
+kmap("n", "<C-h>", vim.cmd.nohl)
 
-vim.keymap.set("n", "<leader>re", ":TexlabBuild<CR>")
+kmap("n", "<leader>re", ":TexlabBuild<CR>")
+
+kmap("n", "<leader>z", ":ZenMode<CR>", { silent = true })
+
+kmap("n", "<leader>ww", ":e ~/Wiki/src/index.md<CR>", { silent = true })

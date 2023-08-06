@@ -41,9 +41,9 @@ tztime local {
 }
 
 memory {
-	format = "%used / %total"
+	format = "%used/%total"
 	threshold_degraded = "10%"
-	format_degraded = "MEMORY: %free"
+	format_degraded = "%used/%total"
 }
 
 volume master {

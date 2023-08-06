@@ -1,42 +1,35 @@
 icons_format = " {icon} "
 
-[theme]
-theme = "modern"
-
 [icons]
 icons = "awesome6"
+
+[theme]
+theme = "plain"
 
 [[block]]
 block = "net"
 device = "wlp2s0"
-format = "{$icon $ssid.str(min_w:18, max_w:18)  $signal_strength  |}"
+format = "{$icon $ssid.str(max_w:18)  $signal_strength |Not Connected }"
 missing_format = ""
 interval = 5
-# ap_format = "$ssid^16   $strength:5"
-# device_format = "$icon $ap"
-# primary_only = true
 
 [[block]]
 block = "music"
-format = " {$title.str(max_w:20)\t$play |}"
-player = "ncspot"
-
-[[block]]
-block = "music"
-format = " {$title.str(max_w:20)\t$play |}"
-player = "spotify"
+format = "{ $title.str(max_w:20)  $play |}"
+player = ["spotify_player", "spotify"]
 
 [[block]]
 block = "sound"
 driver = "pulseaudio"
-format = "  {$output_name.str(min_w:6, max_w:8)   $volume|}  "
+format = "{ $output_name.str(max_w:8)   $volume |}"
+show_volume_when_muted = true
 headphones_indicator = true
 step_width = 3
 max_vol = 100
 [block.mappings]
 "alsa_output.pci-0000_00_1b.0.analog-stereo" = "Speakers"
 "bluez_sink.82_04_9E_22_55_B9.a2dp_sink" = "Lenovo"
-"bluez_sink.EB_06_EF_4B_50_07.a2dp_sink" = "MPow" # Normal Headphones
+"bluez_sink.EB_06_EF_4B_50_07.a2dp_sink" = "MPow"              # Normal Headphones
 "ladspa_output.mbeq_1197.mbeq" = "MPow"                        # Equaliser
 "bluez_sink.EB_06_EF_4B_50_07.handsfree_head_unit" = "MPow LQ" # Low quality audio 
 "auto_null" = "No Audio"
@@ -44,11 +37,11 @@ max_vol = 100
 [[block]]
 block = "battery"
 interval = 10
-format = " $icon $percentage  $time  "
+format = " $icon $percentage  $time "
 
 [[block]]
 block = "memory"
-format = " $icon $mem_used.eng(width:4, prefix_space:true) / $mem_total.eng(width:3, prefix_space:true)  ($mem_used_percents)  "
+format = " $icon Available: $mem_avail.eng(width:4) ($mem_avail_percents.eng(prefix_space:false)) "
 interval = 5
 warning_mem = 85
 critical_mem = 95
