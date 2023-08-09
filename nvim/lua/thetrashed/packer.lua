@@ -15,7 +15,9 @@ return require("packer").startup(function(use)
 
 	-- use({ "jaredgorski/spacecamp" })
 
-	use("blazkowolf/gruber-darker.nvim")
+	-- use("blazkowolf/gruber-darker.nvim")
+
+	use({ "nyoom-engineering/oxocarbon.nvim" })
 
 	-- 	use({
 	-- 		"rose-pine/neovim",
