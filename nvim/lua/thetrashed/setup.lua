@@ -99,6 +99,8 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 
 vim.g.vim_markdown_no_default_key_mappings = 1
 vim.g.vim_markdown_folding_disabled = 1
+vim.g.vim_markdown_conceal = 2
+vim.g.vim_markdown_conceal_code_blocks = 1
 vim.g.vim_markdown_math = 1
 
 vim.g.vimtex_syntax_enabled = 1

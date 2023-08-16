@@ -84,7 +84,7 @@ return require("packer").startup(function(use)
 
 	use({ "jakewvincent/mkdnflow.nvim" })
 
-	use({ "ixru/nvim-markdown" })
+	use({ "preservim/vim-markdown" })
 
 	use({ "HiPhish/rainbow-delimiters.nvim" })
 

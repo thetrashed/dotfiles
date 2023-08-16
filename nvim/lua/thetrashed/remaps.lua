@@ -28,7 +28,9 @@ kmap("n", "<leader>re", ":TexlabBuild<CR>")
 
 kmap("n", "<leader>z", ":ZenMode<CR>", { silent = true })
 
+-- Wiki
 kmap("n", "<leader>ww", ":e ~/Wiki/src/index.md<CR>", { silent = true })
+kmap("n", "<leader>wt", ":e ~/Wiki/src/tasks.md<CR>", { silent = true })
 
 -- Format the file
 kmap("n", "<leader>f", ":FormatWriteLock<CR>", { silent = true })
