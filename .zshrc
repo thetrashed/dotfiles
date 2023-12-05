@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.bin:$HOME/.local/bin:/usr/local/bin:$HOME/.nimble/bin:$PATH:/home/ameer/.flutter/bin
+export PATH=$HOME/.bin:$HOME/.local/bin:/usr/local/bin:$HOME/.nimble/bin:$PATH
 # $HOME/bin:$HOME/usr/bin
 
 if [ -d "$HOME/adb-fastboot/platform-tools" ] ; then
@@ -106,11 +106,12 @@ export LANG=en_US.UTF-8
 #   export EDITOR='mvim'
 # fi
 #
-export VISUAL='nvim'
+export VISUAL='emacsclient'
 export EDITOR='nvim'
 export SUDO_EDITOR='nvim'
 
 export BROWSER='qutebrowser'
+export QT_QPA_PLATFORMTHEME=gtk2
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"

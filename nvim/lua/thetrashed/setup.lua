@@ -47,14 +47,17 @@ vim.opt.splitbelow = true
 
 vim.opt.autochdir = true
 
-vim.filetype.add({ extension = {
-	typ = "typst",
-	asy = "asy",
-	h = "c",
-	hpp = "cpp",
-	c = "c",
-	cpp = "cpp",
-} })
+vim.filetype.add({
+	extension = {
+		typ = "typst",
+		asy = "asy",
+		h = "c",
+		hpp = "cpp",
+		c = "c",
+		cpp = "cpp",
+		zig = "zig",
+	},
+})
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "markdown",
@@ -64,23 +67,22 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Call TexlabBuild each time a .tex file is saved
 --
 -- Define the function to be called on file save
-function OnTexSave()
-	if vim.fn.getbufvar(vim.fn.bufnr("%"), "&mod") == 1 then
-		vim.api.nvim_command("TexlabBuild")
-	end
-end
-
-local texFiles = vim.api.nvim_create_augroup("texFiles", { clear = true })
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	group = "texFiles",
-	pattern = { "*.tex" },
-	callback = function()
-		if vim.fn.getbufvar(0, "&mod") then
-			vim.api.nvim_notify("Exectuing: TexlabBuild", 0, {})
-			vim.api.nvim_command("TexlabBuild")
-		end
-	end,
-})
+-- function OnTexSave()
+-- 	if vim.fn.getbufvar(vim.fn.bufnr("%"), "&mod") == 1 then
+-- 		vim.api.nvim_command("TexlabBuild")
+-- 	end
+-- end
+--
+-- local texFiles = vim.api.nvim_create_augroup("texFiles", { clear = true })
+-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+-- 	group = "texFiles",
+-- 	pattern = { "*.tex" },
+-- 	callback = function()
+-- 		if vim.fn.getbufvar(0, "&mod") then
+-- 			vim.api.nvim_command("TexlabBuild")
+-- 		end
+-- 	end,
+-- })
 
 -- local allFiles = vim.api.nvim_create_augroup('allFiles', { clear = true })
 -- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -112,3 +114,5 @@ vim.g.tex_conceal_frac = 0
 vim.g.tex_flavor = "latex"
 
 vim.g.transparent_enabled = true
+
+vim.g.zig_fmt_autosave = 0

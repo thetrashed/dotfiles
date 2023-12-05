@@ -1,4 +1,4 @@
-set $mod Mod1
+set $mod Mod4
 set $ctrl ctrl
 set $term alacritty
 
@@ -29,7 +29,7 @@ exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 54
 exec --no-startup-id dex --autostart --environment i3
 
 # Disable Caps Lock
-exec_always setxkbmap -option ctrl:nocaps
+exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 
 # Gaps
 default_border pixel 2
@@ -56,6 +56,7 @@ tiling_drag modifier titlebar
 
 # start a terminal
 bindsym $mod+Return exec $term
+bindsym $mod+$ctrl+Return exec emacsclient -nca emacs
 
 # kill focused window
 bindsym $mod+Shift+q kill

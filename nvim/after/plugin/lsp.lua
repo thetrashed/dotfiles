@@ -1,4 +1,4 @@
-local lsp = require("lsp-zero")
+local lspconfig = require("lspconfig")
 local luasnip = require("luasnip")
 
 local has_words_before = function()
@@ -7,87 +7,104 @@ local has_words_before = function()
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-lsp.preset("recommended")
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+require("mason").setup({})
+require("mason-lspconfig").setup()
+
+local on_attach = function(_, bufnr)
+	local opts = { buffer = buf, remap = false }
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition(), opts)
+	vim.keymap.set("n", "K", vim.lsp.buf.hover(), opts)
+	vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol(), opts)
+	vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float(), opts)
+	vim.keymap.set("n", "[d", vim.diagnostic.goto_next(), opts)
+	vim.keymap.set("n", "]d", vim.diagnostic.goto_prev(), opts)
+	vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action(), opts)
+	vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references(), opts)
+	vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename(), opts)
+	vim.keymap.set("n", "<leader>gh", vim.lsp.buf.signature_help(), opts)
+end
+
+local servers = {
+	"bashls",
+	"clangd",
+	"cssls",
+	"eslint",
+	"html",
+	"lua_ls",
+	"pyright",
+	"taplo",
+	"texlab",
+	"typst_lsp",
+	"zls",
+}
+for _, lsp in ipairs(servers) do
+	lspconfig[lsp].setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
+end
+
+lspconfig.lua_ls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		Lua = {
+			completion = {
+				callSnippet = "Replace",
+			},
+		},
+	},
+})
+
+lspconfig.typst_lsp.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		exportPdf = "never",
+	},
+})
 
 local cmp = require("cmp")
 local cmp_select = { behaviour = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-	["<C-Space>"] = cmp.mapping.complete(),
-	["<Tab>"] = cmp.mapping(function(fallback)
-		if cmp.visible() then
-			cmp.select_next_item(cmp_select)
-		elseif luasnip.expand_or_jumpable() then
-			luasnip.expand_or_jump()
-		elseif has_words_before() then
-			cmp.complete()
-		else
-			fallback()
-		end
-	end, { "i", "s" }),
-	["<S-Tab>"] = cmp.mapping(function(fallback)
-		if cmp.select_prev_item(cmp_select) then
-			cmp.select_prev_item(cmp_select)
-		elseif luasnip.jumpable(-1) then
-			luasnip.jump(-1)
-		else
-			fallback()
-		end
-	end, { "i", "s" }),
-	["<CR>"] = cmp.mapping.confirm({ select = true }),
+cmp.setup({
+	snippet = {
+		expand = function(args)
+			luasnip.lsp_expand(args.body)
+		end,
+	},
+
+	mapping = cmp.mapping.preset.insert({
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item(cmp_select)
+			elseif luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			elseif has_words_before() then
+				cmp.complete()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.select_prev_item(cmp_select) then
+				cmp.select_prev_item(cmp_select)
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
+	}),
+	sources = {
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+	},
 })
-
-lsp.set_sign_icons({
-	error = "E",
-	warn = "W",
-	hint = "H",
-	info = "I",
-})
-
-lsp.setup_nvim_cmp({
-	mapping = cmp_mappings,
-})
-
-lsp.on_attach(function(client, bufnr)
-	local opts = { buffer = bufnr, remap = false }
-	vim.keymap.set("n", "gd", function()
-		vim.lsp.buf.definition()
-	end, opts)
-	vim.keymap.set("n", "K", function()
-		vim.lsp.buf.hover()
-	end, opts)
-	vim.keymap.set("n", "<leader>vws", function()
-		vim.lsp.buf.workspace_symbol()
-	end, opts)
-	vim.keymap.set("n", "<leader>vd", function()
-		vim.diagnostic.open_float()
-	end, opts)
-	vim.keymap.set("n", "[d", function()
-		vim.diagnostic.goto_next()
-	end, opts)
-	vim.keymap.set("n", "]d", function()
-		vim.diagnostic.goto_prev()
-	end, opts)
-	vim.keymap.set("n", "<leader>vca", function()
-		vim.lsp.buf.code_action()
-	end, opts)
-	vim.keymap.set("n", "<leader>vrr", function()
-		vim.lsp.buf.references()
-	end, opts)
-	vim.keymap.set("n", "<leader>vrn", function()
-		vim.lsp.buf.rename()
-	end, opts)
-	vim.keymap.set("n", "<leader>gh", function()
-		vim.lsp.buf.signature_help()
-	end, opts)
-end)
-
-lsp.store_config("typst-lsp", {
-	exportPdf = "never",
-})
-
-require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.setup()
 
 vim.diagnostic.config({
 	virtual_text = true,

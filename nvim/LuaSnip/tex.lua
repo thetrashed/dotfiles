@@ -23,14 +23,6 @@ end
 
 return {
 	s(
-		{ trig = "opbraket", dscr = "Braket with operator" },
-		fmta("\\left\\langle <> \\middle| <> \\middle| <> \\right\\rangle", {
-			i(1),
-			i(2),
-			i(3),
-		}, { condition = in_mathzone })
-	),
-	s(
 		{ trig = "braket", dscr = "Braket" },
 		fmta("\\left\\langle <> \\middle| <> \\right\\rangle", {
 			i(1),
@@ -107,14 +99,6 @@ return {
 	),
 
 	s({ trig = "paren", dscr = "Add parentheses" }, fmta("\\left(<>\\right)", i(1)), { condition = in_mathzone }),
-
-	s(
-		{ trig = "cbrace", dscr = "Add curly braces" },
-		fmta("\\left\\{ <> \\right\\}", i(1)),
-		{ condition = in_mathzone }
-	),
-
-	s({ trig = "sbract", dscr = "Add square brackets" }, fmta("\\left[<>\\right]", i(1)), { condition = in_mathzone }),
 
 	s(
 		{ trig = "sb", dscr = "Easy subscripts" },
@@ -223,9 +207,6 @@ return {
 	}),
 	s({ trig = ";t", snippetType = "autosnippet" }, {
 		t("\\tau"),
-	}),
-	s({ trig = ";T", snippetType = "autosnippet" }, {
-		t("\\theta"),
 	}),
 	s({ trig = ";fn", snippetType = "autosnippet" }, {
 		t("\\eta"),

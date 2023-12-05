@@ -104,6 +104,16 @@ require("formatter").setup({
 				}
 			end,
 		},
+		zig = {
+			require(filetypes .. "zig").zigfmt,
+			function()
+				return {
+					exe = "zig",
+					args = { "fmt", "--stdin", "-" },
+					stdin = true,
+				}
+			end,
+		},
 		["*"] = { require(filetypes .. "any").remove_trailing_whitespace },
 	},
 })

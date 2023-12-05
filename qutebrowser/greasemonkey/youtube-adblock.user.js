@@ -7,7 +7,7 @@
 // @match        *://*.youtube.com/*
 // @exclude      *://*.youtube.com/subscribe_embed?*
 // ==/UserScript==
-//let main = new MutationObserver(() => {
+// let main = new MutationObserver(() => {
 //    let ad = [...document.querySelectorAll('.ad-showing')][0];
 //    if (ad) {
 //        let btn = document.querySelector('.videoAdUiSkipButton,.ytp-ad-skip-button')
@@ -15,9 +15,9 @@
 //            btn.click()
 //        }
 //    }
-//})
-//
-//main.observe(document.querySelector('.videoAdUiSkipButton,.ytp-ad-skip-button'), {attributes: true, characterData: true, childList: true})
+// })
+
+// main.observe(document.querySelector('.videoAdUiSkipButton,.ytp-ad-skip-button'), {attributes: true, characterData: true, childList: true})
 
 // ==UserScript==
 // @name         Auto Skip YouTube Ads 
@@ -34,6 +34,16 @@ setInterval(() => {
     }
     const ad = [...document.querySelectorAll('.ad-showing')][0];
     if (ad) {
-        document.querySelector('video').playbackRate = 100;
+        document.querySelector('video').playbackRate = 16;
     }
 }, 50)
+
+const ad = [...document.querySelectorAll('.ad-showing')][0];
+if (ad) {
+    console.log("ad found");
+    // Speed up and mute
+    document.querySelector('video').playbackRate = 25;
+    document.querySelector('video').muted = true;
+} else {
+    console.log("ad not found");
+}

@@ -8,7 +8,7 @@ return require("packer").startup(function(use)
 
 	use({
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.1",
+		tag = "0.1.4",
 		-- or                            , branch = '0.1.x',
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
@@ -44,32 +44,20 @@ return require("packer").startup(function(use)
 
 	use({ "mbbill/undotree" })
 
-	use({ "ThePrimeagen/harpoon" })
-
+	use({ "neovim/nvim-lspconfig" })
 	use({
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v2.x",
-		requires = {
-			-- LSP Support
-			{ "neovim/nvim-lspconfig" }, -- Required
-			{
-				-- Optional
-				"williamboman/mason.nvim",
-				run = function()
-					pcall(vim.cmd, "MasonUpdate")
-				end,
-			},
-			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
-
-			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" }, -- Required
-			{ "hrsh7th/cmp-buffer" }, -- Required
-			{ "hrsh7th/cmp-path" }, -- Required
-			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
-
-			{ "L3MON4D3/LuaSnip" }, -- Required
-		},
+		"williamboman/mason.nvim",
+		run = function()
+			pcall(vim.cmd, "MasonUpdate")
+		end,
 	})
+	use({ "williamboman/mason-lspconfig.nvim" })
+
+	-- Autocompletion
+	use({ "hrsh7th/nvim-cmp" })
+	use({ "hrsh7th/cmp-buffer" })
+	use({ "hrsh7th/cmp-path" })
+	use({ "hrsh7th/cmp-nvim-lsp" })
 
 	use({
 		"nvim-lualine/lualine.nvim",
@@ -80,7 +68,7 @@ return require("packer").startup(function(use)
 
 	use({ "mhartington/formatter.nvim" })
 
-	-- use { 'jbyuki/nabla.nvim' }
+	use({ "jbyuki/nabla.nvim" })
 
 	use({ "jakewvincent/mkdnflow.nvim" })
 
@@ -88,7 +76,7 @@ return require("packer").startup(function(use)
 
 	use({ "HiPhish/rainbow-delimiters.nvim" })
 
-	use({ "cohama/lexima.vim" })
+	use({ "m4xshen/autoclose.nvim" })
 
 	use({ "lervag/vimtex" })
 
@@ -100,4 +88,6 @@ return require("packer").startup(function(use)
 	})
 
 	use({ "xiyaowong/transparent.nvim" })
+
+	use({ "ziglang/zig.vim" })
 end)

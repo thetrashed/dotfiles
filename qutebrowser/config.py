@@ -2,6 +2,8 @@
 c = c
 config = config
 
+import catppuccin
+
 # Load autoconfig.yml
 config.load_autoconfig(False)
 
@@ -75,3 +77,6 @@ c.completion.show = "auto"
 
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.policy.images = "never"
+catppuccin.setup(c, "machiatto", True)
+
+c.qt.args = ["disable-accelerated-2d-canvas"]
